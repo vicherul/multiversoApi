@@ -1,29 +1,34 @@
 import type { Character } from "../../types/character"
+import "./CharacterCard.css";
 
 interface CharacterCardProps {
   character: Character;
 }
 
 const CharacterCard = ({character}: CharacterCardProps) => {
-  // diccionario para los colores del status
+  // Diccionario para destacar visualmente el estado del personaje.
   const statusColors = {
-    Alive: 'bg-green-500',
-    Dead: 'bg-red-500',
-    unknown: 'bg-gray-400'
+    Alive: 'status-alive',
+    Dead: 'status-dead',
+    unknown: 'status-unknown'
   }
 
   return (
-    <div className="bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:scale-105 border border-slate-700">
-      <img src={character.image} alt={`Foto de ${character.name}`} className="w-full h-48 object-cover" />
-      <div className="p-4">
-        <h2 className="text-xl font-bold text-white truncate mb-2">{character.name}</h2>
-        <div className="flex items-center gap-2 text-slate-300 text-sm">
-          {/* Renderizado condicional del color usando el diccionario */}
-          <div className={`w-3 h-3 rounded-full ${statusColors[character.status]}`}></div>
-          <span className="capitalize">{character.status} - {character.species}</span>
+    <article className="character-card">
+      <img
+        src={character.image}
+        alt={`Foto de ${character.name}`}
+        className="character-image"
+        loading="lazy"
+      />
+      <div className="character-body">
+        <h2 className="character-name">{character.name}</h2>
+        <div className="character-meta">
+          <div className={`character-status-dot ${statusColors[character.status]}`}></div>
+          <span>{character.status} - {character.species}</span>
         </div>
       </div>
-    </div>
+    </article>
   )
 }
 

@@ -1,37 +1,48 @@
 import CharacterCard from "../components/CharacterCard/CharacterCard";
 import { useCharacter } from "../hooks/useCharacter"
+import "./Gallery.css";
 
 const Gallery = () =>{
-  const {characters, loading, error} = useCharacter();
+  const {character, loading, error} = useCharacter();
   
   return (
-    <div className="min-h-screen bg-slate-900 p-8 font-sans">
-      <h1 className="text-4xl font-black text-center text-cyan-400 mb-10 tracking-widest">Rick and Morty Wiki</h1>
+    <main className="gallery-page">
+      <section className="gallery-shell">
+        <header className="gallery-header">
+          <p className="gallery-eyebrow">Multiverso</p>
+          <h1 className="gallery-title">Rick and Morty Characters</h1>
+          <p className="gallery-subtitle">
+            Explora personajes en una cuadricula dinamica con su estado actual.
+          </p>
+          {!loading && !error && (
+            <p className="gallery-counter">{character.length} personajes encontrados</p>
+          )}
+        </header>
 
-      {/* MIENTRAS CARGA */}
-      {loading &&
-        <div className="flex justify-center items-center py-20">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-cyan-400"></div>
-        </div>
-      }
+        {/* MIENTRAS CARGA */}
+        {loading &&
+          <div className="gallery-loader" role="status" aria-label="Cargando personajes">
+            <div className="loader-ring"></div>
+          </div>
+        }
 
-      {/* SI HAY ERRORES */}
-      {error && (
-        <div className="text-center text-red-500 bg-red-900/30 p-4 rounded-lg max-w-md mx-auto">
-          El error es: {error}
-        </div>
-      )}
+        {/* SI HAY ERRORES */}
+        {error && (
+          <div className="gallery-error" role="alert">
+            El error es: {error}
+          </div>
+        )}
 
-      {/* El camino feliz */}
-      {!error && !loading && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {characters.map((char)=>(
-            <CharacterCard key={char.id} character={char} />
-          ))}
-        </div>
-      )}
-
-    </div>
+        {/* El camino feliz */}
+        {!error && !loading && (
+          <div className="gallery-grid" aria-live="polite">
+            {character.map((char)=>(
+              <CharacterCard key={char.id} character={char} />
+            ))}
+          </div>
+        )}
+      </section>
+    </main>
   )
 }
 
