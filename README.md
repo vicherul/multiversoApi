@@ -8,6 +8,10 @@
 
 Una aplicación web moderna que consume la API pública de Rick and Morty para mostrar una galería interactiva de personajes del universo de la serie.
 
+
+<img width="2560" height="3498" alt="MultiversoApi" src="https://github.com/user-attachments/assets/d53e5cf0-3016-4de7-a648-04d1d34fb01f" />
+
+
 ```
 ┌─────────────────────────────────────────┐
 │  Rick and Morty Characters Gallery      │
@@ -217,7 +221,7 @@ Accede a `http://localhost:5173` en tu navegador.
 
 ## 🌐 Deployment
 
-### Opción 1: Vercel (Recomendado - Más Fácil)
+### Vercel 
 
 1. Sube tu código a GitHub
 2. Conecta tu repositorio en [vercel.com](https://vercel.com)
@@ -225,46 +229,6 @@ Accede a `http://localhost:5173` en tu navegador.
 4. Haz click en "Deploy"
 5. Tu app estará disponible en `https://tu-proyecto.vercel.app`
 
-### Opción 2: Netlify
-
-1. Compila el proyecto: `npm run build`
-2. Ve a [netlify.com](https://netlify.com) y crea una cuenta
-3. Arrastra la carpeta `dist/` al área de deploy
-4. O conecta tu repositorio de GitHub para deploy automático
-
-### Opción 3: GitHub Pages
-
-1. Añade a `vite.config.ts`:
-   ```typescript
-   export default defineConfig({
-     base: "/multiversoApi/", // Cambia por tu repo name
-     plugins: [react()],
-   });
-   ```
-2. Compila: `npm run build`
-3. Sube la carpeta `dist/` a la rama `gh-pages`
-4. Disponible en `https://tunombre.github.io/multiversoApi`
-
-### Opción 4: Docker (Producción Profesional)
-
-1. Crea un archivo `Dockerfile`:
-
-   ```dockerfile
-   FROM node:18-alpine AS build
-   WORKDIR /app
-   COPY package*.json ./
-   RUN npm install
-   COPY . .
-   RUN npm run build
-
-   FROM nginx:alpine
-   COPY --from=build /app/dist /usr/share/nginx/html
-   EXPOSE 80
-   CMD ["nginx", "-g", "daemon off;"]
-   ```
-
-2. Compila la imagen: `docker build -t multiverso-app .`
-3. Ejecuta el contenedor: `docker run -p 80:80 multiverso-app`
 
 ## 📚 API Reference
 
@@ -274,15 +238,8 @@ Endpoint utilizado: `https://rickandmortyapi.com/api/character`
 
 Documentación completa: [Rick and Morty API Docs](https://rickandmortyapi.com/documentation)
 
-## 🤝 Contribuciones
+<img width="701" height="889" alt="Api" src="https://github.com/user-attachments/assets/5c15f6a0-fef8-4ac1-8884-527cccb24b47" />
 
-Si deseas mejorar este proyecto:
-
-1. Fork el repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/NuevaCaracteristica`)
-3. Commit tus cambios (`git commit -m 'Añade nueva característica'`)
-4. Push a la rama (`git push origin feature/NuevaCaracteristica`)
-5. Abre un Pull Request
 
 ## 📝 Licencia
 
